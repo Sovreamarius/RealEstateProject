@@ -14,7 +14,15 @@ namespace RealEstateProject
         public int Floor { get; set; }
         public int BalconiesNo { get; set; }
         public virtual double Surface { get; set; }
-        public List<string> Endowment { get; set; } 
+
+        public enum Utilities {
+            AC = 500,
+            View = 5000,
+            Gas = 1000,
+            SmartUtilities = 3000
+        } 
+
+        public List<Utilities> Endowment { get; set; } 
 
         #region Constructors
 
@@ -23,7 +31,7 @@ namespace RealEstateProject
         { }
 
         //without surface - used in derived class to have a specific surface
-        public Residence(int _number, int _floor, int _balconiesNo, List<String> _endowment)
+        public Residence(int _number, int _floor, int _balconiesNo, List<Utilities> _endowment)
         {
             Number = _number;
             Floor = _floor;
@@ -32,7 +40,7 @@ namespace RealEstateProject
         }
 
         //used to create object of Residence with all the content
-        public Residence(int _number, int _floor, int _balconiesNo, double _surface, List<String> _endowment)
+        public Residence(int _number, int _floor, int _balconiesNo, double _surface, List<Utilities> _endowment)
         {
             Number = _number;
             Floor = _floor;
@@ -43,9 +51,20 @@ namespace RealEstateProject
 
         #endregion
 
-        public double GetTotalPrice()
+        public virtual double GetTotalPrice()
         {
             return Surface * 1000;
+        }
+        
+        public void ShowInfo()
+        {
+            Console.WriteLine(
+                "Surface: {0}, Number: {1}, Floor: {2}, BalconiesNo: {3}, Price: {4}",
+                Surface, Number, Floor, BalconiesNo, GetTotalPrice());
+            foreach (var item in Endowment)
+            {
+                Console.WriteLine(item.ToString());
+            }
         }
     }
 }

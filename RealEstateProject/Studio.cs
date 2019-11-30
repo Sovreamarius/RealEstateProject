@@ -10,7 +10,7 @@ namespace RealEstateProject
     {
         public override double Surface { get => 50; set => base.Surface = value; }
 
-        public Studio(int _number, int _floor, int _balconiesNo, List<String> _endowment) : base(_number, _floor, _balconiesNo, _endowment)
+        public Studio(int _number, int _floor, int _balconiesNo, List<Utilities> _endowment) : base(_number, _floor, _balconiesNo, _endowment)
         { }
     }
 }

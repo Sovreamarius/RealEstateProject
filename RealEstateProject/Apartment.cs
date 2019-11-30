@@ -8,13 +8,17 @@ namespace RealEstateProject
 {
     public class Apartment : Residence
     {
+        private int noRooms = 0;
         public int NoOfRooms
         {
-            get;
-            set;
-            
-               //if (value < 1 || value > 4)
-                 // throw new ArgumentOutOfRangeException($"{nameof(value)} must be between 1 and 4.");
+            get { return noRooms; }
+            set
+            {
+                if (value < 1 || value > 4)
+                    throw new ArgumentOutOfRangeException($"{nameof(value)} must be between 1 and 4.");
+                else
+                    noRooms = value;
+            }
         }
 
         public override double Surface {
@@ -39,9 +43,9 @@ namespace RealEstateProject
             }
             set => Surface = value; }
 
+        public Apartment() { }
 
-
-        public Apartment(int _number, int _floor, int _balconiesNo, List<String> _endowment, int _noOfRooms) : base(_number, _floor, _balconiesNo, _endowment)
+        public Apartment(int _number, int _floor, int _balconiesNo, List<Utilities> _endowment, int _noOfRooms) : base(_number, _floor, _balconiesNo, _endowment)
         {
             NoOfRooms = _noOfRooms;
         }
