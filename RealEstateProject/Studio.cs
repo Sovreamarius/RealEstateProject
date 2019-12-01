@@ -10,7 +10,7 @@ namespace RealEstateProject
     {
         #region Properties
 
-        public override double Surface { get => 50; set => base.Surface = value; }
+        public override int Surface { get => 50; set => base.Surface = value; }
 
         #endregion
 

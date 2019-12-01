@@ -24,7 +24,7 @@ namespace RealEstateProject
                 }
             }
         }
-        public override double Surface { get => 120; set => Surface = value; }
+        public override int Surface { get => 120; set => Surface = value; }
 
         #endregion
 
@@ -42,7 +42,7 @@ namespace RealEstateProject
         #region Methods
 
         // if the level of house is 2 then the price is doubled
-        public override double GetTotalPrice()
+        public override int GetTotalPrice()
         {
             if (Level == 2)
                 return (Surface * 1000 + _totalEndowmentCost) * 2;
@@ -52,6 +52,7 @@ namespace RealEstateProject
 
         public override void ShowInfo()
         {
+            Console.WriteLine("=========== ID: " + Id + "===========");
             Console.WriteLine(
                 "Number: {0} \n" + "Floor: {1} \n" + "Balconies: {2} \n" + "Surface: {3} \n" + "Level: {4} \n" + "Price without utilities: {5} \n" + "Type: {6}",
                  Number, Floor, BalconiesNo, Surface, Level, GetTotalPrice(), GetType());
@@ -64,6 +65,13 @@ namespace RealEstateProject
             }
             Console.WriteLine("Utilities total cost: " + CalculateUtilitiesPrice());
             Console.WriteLine("Total Price: " + GetTotalPrice() + "\n");
+            ResetCosts();
+        }
+
+        private void ResetCosts()
+        {
+            _totalCost = 0;
+            _totalEndowmentCost = 0;
         }
 
         #endregion

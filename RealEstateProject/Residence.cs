@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RealEstateProject
@@ -10,12 +11,17 @@ namespace RealEstateProject
     {
         #region Fields and Properties
 
-        public int _totalEndowmentCost = 0;
+        public bool _totalEndowmentCostCalculated = false; // used to determine if price was calculated and the endowment is the same
+        public bool _totalCostCalculed = false; // used to determine if total cost was calculated
+        public int _totalEndowmentCost = 0; // the utilities cost for the specific residence
+        public int _totalCost = 0; //total cost of the residence
+        private static int id; // id for each instance
 
+        public int Id { get; private set; }
         public int Number { get; set; }
         public int Floor { get; set; }
         public int BalconiesNo { get; set; }
-        public virtual double Surface { get; set; }
+        public virtual int Surface { get; set; }
        
         public enum Utilities {
             AC = 500,
@@ -37,6 +43,7 @@ namespace RealEstateProject
         //without surface - used in derived class to have a specific surface
         public Residence(int _number, int _floor, int _balconiesNo, List<Utilities> _endowment)
         {
+            Id = Interlocked.Increment(ref id); 
             Number = _number;
             Floor = _floor;
             BalconiesNo = _balconiesNo;
@@ -44,7 +51,7 @@ namespace RealEstateProject
         }
 
         //used to create object of Residence with all the content
-        public Residence(int _number, int _floor, int _balconiesNo, double _surface, List<Utilities> _endowment)
+        public Residence(int _number, int _floor, int _balconiesNo, int _surface, List<Utilities> _endowment)
         {
             Number = _number;
             Floor = _floor;
@@ -60,22 +67,32 @@ namespace RealEstateProject
         //to be changed later in private and add it in all derived class somehow
         public int CalculateUtilitiesPrice()
         {
-            foreach (var item in Endowment)
-            {
-                int val = (int)item;
-                _totalEndowmentCost += val;
-            }
+            //if (!_totalEndowmentCostCalculated)
+            //{
+                foreach (var item in Endowment)
+                {
+                    int val = (int)item;
+                    _totalEndowmentCost += val;
+                }
+                //_totalEndowmentCostCalculated = true;
+            //}
             return _totalEndowmentCost;
         }
 
-        public virtual double GetTotalPrice()
+        public virtual int GetTotalPrice()
         {
-            return Surface * 1000 + _totalEndowmentCost;
+           // if (!_totalCostCalculed)
+           // {
+                _totalCost = Surface * 1000 + _totalEndowmentCost;
+            //    _totalCostCalculed = true;
+           // }
+            return _totalCost;
         }
         
         public virtual void ShowInfo()
         {
-            Console.WriteLine("Number: {0} \n" + "Floor: {1} \n" + "Balconies: {2} \n" + "Surface: {3} \n" + "Price without utilities: {4} \n" + "Type: {5}",
+            Console.WriteLine("=========== ID: "+ Id +"===========");
+            Console.WriteLine("Number: {0} \n" + "Floor: {1} \n" + "Balconies: {2} \n" + "Surface: {3} \n" + "Price by surface: {4} \n" + "Type: {5}",
                  Number, Floor, BalconiesNo, Surface, GetTotalPrice(), GetType());
             Console.WriteLine("This residence has to following endowment:");
             int count = 0;
@@ -85,7 +102,15 @@ namespace RealEstateProject
                 Console.WriteLine(count + " - " + item.ToString() +" which costs: " + (int)item);
             }
             Console.WriteLine("Utilities total cost: " + CalculateUtilitiesPrice());
+           // _totalCostCalculed = false;
             Console.WriteLine("Total Price: " + GetTotalPrice() + "\n");
+            ResetCosts();
+        }
+
+        private void ResetCosts()
+        {
+            _totalCost = 0;
+            _totalEndowmentCost = 0;
         }
 
         #endregion

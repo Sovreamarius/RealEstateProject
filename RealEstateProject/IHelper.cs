@@ -8,6 +8,6 @@ namespace RealEstateProject
 {
     interface IHelper
     {
-        double GetTotalPrice();
+        int GetTotalPrice();
     }
 }

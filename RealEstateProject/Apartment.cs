@@ -23,7 +23,7 @@ namespace RealEstateProject
             }
         }
 
-        public override double Surface {
+        public override int Surface {
             get
             {
                 if (NoOfRooms == 2)
@@ -62,6 +62,7 @@ namespace RealEstateProject
 
         public override void ShowInfo()
         {
+            Console.WriteLine("=========== ID: " + Id + "===========");
             Console.WriteLine(
                 "Number: {0} \n" + "Floor: {1} \n" + "Balconies: {2} \n" + "Surface: {3} \n" + "Rooms: {4} \n" + "Price without utilities: {5} \n" + "Type: {6}",
                  Number, Floor, BalconiesNo, Surface, NoOfRooms, GetTotalPrice(), GetType());
@@ -74,6 +75,13 @@ namespace RealEstateProject
             }
             Console.WriteLine("Utilities total cost: " + CalculateUtilitiesPrice());
             Console.WriteLine("Total Price: " + GetTotalPrice() + "\n");
+            ResetCosts();
+        }
+
+        private void ResetCosts()
+        {
+            _totalCost = 0;
+            _totalEndowmentCost = 0;
         }
 
         #endregion
