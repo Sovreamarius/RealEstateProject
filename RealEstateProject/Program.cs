@@ -11,68 +11,77 @@ namespace RealEstateProject
     {
         static void Main(string[] args)
         {
-            // List<string> endowment = new List<string> { "AC", "View", "Gas", "Smart utilities" };
+            #region Random lists for endowment
 
-            /*House h1 = new House(124, 2, 1, 50, endowment, 1);
-            House h2 = new House(0, 0, 0, 700, endowment, 2);
-            Studio s1 = new Studio(1,2,1,40, endowment);
-
-
-            Console.WriteLine("h1 endowment 2: "+ h1.Endowment[1]);
-            Console.WriteLine("h2 surface: "+ h2.Surface);
-            Console.WriteLine("s1 endowment: " + s1.Endowment[3]);
-            Apartment ap = new Apartment(12, 2, 2, 59, endowment,3);
-            SmallApartment smallAp = new SmallApartment(12,1,1,40,endowment);
-            Residence r1 = new Residence(1, 1, 1, endowment);
-            House h1 = new House(12,2,2,endowment,2);
-            Console.WriteLine("r1 surface "+r1.Surface);
-            Console.WriteLine("house surface: " + h1.Surface); 
-            
-            House h1 = new House(2, 2, 2, endowment, 1);
-            Console.WriteLine("surface of house "+h1.Surface);
-            Console.WriteLine("price of house: "+h1.GetTotalPrice());
-            */
-            /*
-            Apartment ap1 = new Apartment(23,2,12,endowment,4);
-
-
-            SmallApartment smap1 = new SmallApartment(1, 1, 1, endowment);
-            Console.WriteLine("small apartment surface: {0}", smap1.Surface);
-
-            Studio studio1 = new Studio(2,3,12,endowment);
-            Console.WriteLine("studio surface: {0}", studio1.Surface);
-            Console.WriteLine("Price is: " + studio1.GetTotalPrice());
-            */
-            //Apartment ap1 = new Apartment();
-            // ap1.NoOfRooms = 3;
-            //  Console.WriteLine(""+ ap1.NoOfRooms);
-
-            /*
-            var houses = new List<House>();
-            var house1 = new House(23, 3, 1, endowment, 2);
-            var house2 = new House(27, 3, 1, endowment, 1);
-            houses.Add(house1);
-            houses.Add(house2);
-
-            int count = 0;
-            foreach (var item in houses)
+            List<Utilities> list1 = new List<Utilities>
             {
-                count++;
-                Console.WriteLine("House nr. " + count);
-                Console.WriteLine(
-                    "Surface: {0}, Number: {1}, Floor: {2}, BalconiesNo: {3}, Level: {4}, Price: {5}",
-                    item.Surface , item.Number, item.Floor, item.BalconiesNo, item.Level, item.GetTotalPrice()
-                    );
-            }*/
-            
-            List<Utilities> list = new List<Utilities>();
-            list.Add(Utilities.AC);
-            list.Add(Utilities.SmartUtilities);
-            list.Add(Utilities.SmartUtilities);
+                Utilities.AC,
+                Utilities.SmartUtilities,
+                Utilities.View,
+                Utilities.NoMousesInTheHouse
+            };
 
-            Apartment ap1 = new Apartment(12, 2, 1,list, 3);
+            List<Utilities> list2 = new List<Utilities>
+            {
+                Utilities.AC,
+                Utilities.NoMousesInTheHouse
+            };
 
-            ap1.ShowInfo();
+            List<Utilities> list3 = new List<Utilities>
+            {
+                Utilities.AC,
+                Utilities.SmartUtilities,
+            };
+            #endregion
+
+            #region Lists of objects
+            // List of apartments on sale
+            List<Apartment> apartments = new List<Apartment>
+            {
+                new Apartment(2, 0, 1, list1, 2),
+                new Apartment(56, 0, 1, list1, 4),
+                new Apartment(102, 1, 1, list2, 3),
+                new Apartment(302, 3, 1, list3, 2),
+                new Apartment(217, 2, 1, list3, 3),
+                new Apartment(427, 4, 1, list2, 4)
+            };
+
+            // List of houses on sale
+            List<House> houses = new List<House>
+            {
+                new House(27, 0, 1, list2, 2),
+                new House(16, 0, 2, list2, 2),
+                new House(12, 0, 1, list3, 1),
+                new House(402, 0, 3, list1, 1),
+                new House(127, 0, 1, list1, 1),
+                new House(55, 0, 1, list2, 1)
+            };
+            #endregion
+
+            #region Menu 
+            Console.WriteLine("Choose what you wanna buy: 1 - apartments, 2 - houses \n");
+            string selection = string.Empty;
+            selection = Console.ReadLine();
+
+            switch(selection)
+            {
+                case "1":
+                    Console.WriteLine("Ti-o trebuit tie apartamente...no cauta...\n");
+                    foreach (var apartment in apartments)
+                    {
+                        apartment.ShowInfo();
+                    }
+                    break;
+                case "2":
+                    Console.WriteLine("Ti-o trebuit tie case...no cauta...\n");
+                    foreach (var house in houses)
+                    {
+                        house.ShowInfo();
+                    }
+                    break;
+                default:break;
+            }
+            #endregion
 
             Console.ReadKey();
         }
