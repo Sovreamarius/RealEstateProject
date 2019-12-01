@@ -15,8 +15,7 @@ namespace RealEstateProject
         #region Constructors
         public SmallApartment() { }
 
-        public SmallApartment(int _number, int _floor, int _balconiesNo, List<Utilities> _endowment) : base(_number, _floor, _balconiesNo, _endowment)
-        {}
+        public SmallApartment(int _number, int _floor, int _balconiesNo, List<Utilities> _endowment) : base(_number, _floor, _balconiesNo, _endowment) {}
         #endregion
     }
 }

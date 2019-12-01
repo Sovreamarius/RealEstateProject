@@ -9,6 +9,7 @@ namespace RealEstateProject
     public class Residence : IHelper
     {
         #region Fields and Properties
+
         public int _totalEndowmentCost = 0;
 
         public int Number { get; set; }
@@ -25,9 +26,11 @@ namespace RealEstateProject
         }
         
         public List<Utilities> Endowment { get; set; }
+
         #endregion
 
         #region Constructors
+
         //default constructor
         public Residence() { }
 
@@ -53,6 +56,7 @@ namespace RealEstateProject
         #endregion
 
         #region Methods
+
         //to be changed later in private and add it in all derived class somehow
         public int CalculateUtilitiesPrice()
         {
@@ -83,6 +87,7 @@ namespace RealEstateProject
             Console.WriteLine("Utilities total cost: " + CalculateUtilitiesPrice());
             Console.WriteLine("Total Price: " + GetTotalPrice() + "\n");
         }
+
         #endregion
     }
 }

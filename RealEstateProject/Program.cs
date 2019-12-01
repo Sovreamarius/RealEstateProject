@@ -59,27 +59,48 @@ namespace RealEstateProject
             #endregion
 
             #region Menu 
-            Console.WriteLine("Choose what you wanna buy: 1 - apartments, 2 - houses \n");
-            string selection = string.Empty;
-            selection = Console.ReadLine();
-
-            switch(selection)
+            bool doWeGo = true;
+            while (doWeGo)
             {
-                case "1":
-                    Console.WriteLine("Ti-o trebuit tie apartamente...no cauta...\n");
-                    foreach (var apartment in apartments)
-                    {
-                        apartment.ShowInfo();
-                    }
-                    break;
-                case "2":
-                    Console.WriteLine("Ti-o trebuit tie case...no cauta...\n");
-                    foreach (var house in houses)
-                    {
-                        house.ShowInfo();
-                    }
-                    break;
-                default:break;
+                Console.WriteLine("Choose what you want to buy\n");
+                Console.WriteLine("Apartments (1)");
+                Console.WriteLine("Houses (2)");
+                Console.WriteLine("SmallApartments (3)");
+                Console.WriteLine("Studios (4)");
+                Console.WriteLine("Exit (e)\n");
+
+                string selection = string.Empty;
+                selection = Console.ReadLine();
+
+                switch (selection)
+                {
+                    case "1":
+                        Console.WriteLine("Ti-o trebuit tie apartamente...no cauta...\n");
+                        foreach (var apartment in apartments)
+                        {
+                            apartment.ShowInfo();
+                        }
+                        break;
+                    case "2":
+                        Console.WriteLine("Ti-o trebuit tie case...no cauta...\n");
+                        foreach (var house in houses)
+                        {
+                            house.ShowInfo();
+                        }
+                        break;
+                    case "3":
+                        Console.WriteLine("N-avem inca");
+                        break;
+                    case "4":
+                        Console.WriteLine("N avem inca");
+                        break;
+                    case "e":
+                        doWeGo = false;
+                        break;
+                    default:
+                        Console.WriteLine("Please choose a correct value."); ;
+                        break;
+                }
             }
             #endregion
 

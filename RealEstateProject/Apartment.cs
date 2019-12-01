@@ -9,6 +9,7 @@ namespace RealEstateProject
     public class Apartment : Residence
     {
         #region Fields and Properties
+
         private int noOfRooms = 0;
         public int NoOfRooms
         {
@@ -43,18 +44,22 @@ namespace RealEstateProject
                 }
             }
             set => Surface = value; }
+
         #endregion
 
         #region Constructor
+
         public Apartment() { }
 
         public Apartment(int _number, int _floor, int _balconiesNo, List<Utilities> _endowment, int _noOfRooms) : base(_number, _floor, _balconiesNo, _endowment)
         {
             NoOfRooms = _noOfRooms;
         }
+
         #endregion
 
         #region Methods
+
         public override void ShowInfo()
         {
             Console.WriteLine(
@@ -70,6 +75,7 @@ namespace RealEstateProject
             Console.WriteLine("Utilities total cost: " + CalculateUtilitiesPrice());
             Console.WriteLine("Total Price: " + GetTotalPrice() + "\n");
         }
+
         #endregion
     }
 }

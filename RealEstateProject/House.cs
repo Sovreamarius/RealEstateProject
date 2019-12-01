@@ -40,6 +40,7 @@ namespace RealEstateProject
         #endregion
 
         #region Methods
+
         // if the level of house is 2 then the price is doubled
         public override double GetTotalPrice()
         {
@@ -64,6 +65,7 @@ namespace RealEstateProject
             Console.WriteLine("Utilities total cost: " + CalculateUtilitiesPrice());
             Console.WriteLine("Total Price: " + GetTotalPrice() + "\n");
         }
+
         #endregion
     }
 }
