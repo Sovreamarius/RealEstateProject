@@ -67,13 +67,6 @@ namespace RealEstateProject
             Console.WriteLine("Total Price: " + GetTotalPrice() + "\n");
             ResetCosts();
         }
-
-        private void ResetCosts()
-        {
-            _totalCost = 0;
-            _totalEndowmentCost = 0;
-        }
-
         #endregion
     }
 }

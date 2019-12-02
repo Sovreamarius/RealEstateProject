@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace RealEstateProject
 {
-    public class Residence : IHelper
+    public class Residence
     {
         #region Fields and Properties
-
-        public bool _totalEndowmentCostCalculated = false; // used to determine if price was calculated and the endowment is the same
-        public bool _totalCostCalculed = false; // used to determine if total cost was calculated
+        
         public int _totalEndowmentCost = 0; // the utilities cost for the specific residence
         public int _totalCost = 0; //total cost of the residence
         private static int id; // id for each instance
@@ -64,28 +62,22 @@ namespace RealEstateProject
 
         #region Methods
 
+        #region public methods
+
         //to be changed later in private and add it in all derived class somehow
         public int CalculateUtilitiesPrice()
         {
-            //if (!_totalEndowmentCostCalculated)
-            //{
                 foreach (var item in Endowment)
                 {
                     int val = (int)item;
                     _totalEndowmentCost += val;
                 }
-                //_totalEndowmentCostCalculated = true;
-            //}
             return _totalEndowmentCost;
         }
 
         public virtual int GetTotalPrice()
         {
-           // if (!_totalCostCalculed)
-           // {
-                _totalCost = Surface * 1000 + _totalEndowmentCost;
-            //    _totalCostCalculed = true;
-           // }
+            _totalCost = Surface * 1000 + _totalEndowmentCost;
             return _totalCost;
         }
         
@@ -107,11 +99,16 @@ namespace RealEstateProject
             ResetCosts();
         }
 
-        private void ResetCosts()
+        #endregion
+
+        #region protected&private methods
+
+        protected void ResetCosts()
         {
             _totalCost = 0;
             _totalEndowmentCost = 0;
         }
+        #endregion
 
         #endregion
     }
