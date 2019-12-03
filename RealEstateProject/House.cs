@@ -42,7 +42,7 @@ namespace RealEstateProject
         #region Methods
 
         // if the level of house is 2 then the price is doubled
-        public override int GetTotalPrice()
+        protected override int GetTotalPrice()
         {
             if (Level == 2)
                 return (Surface * 1000 + _totalEndowmentCost) * 2;

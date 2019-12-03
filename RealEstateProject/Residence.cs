@@ -63,23 +63,6 @@ namespace RealEstateProject
         #region Methods
 
         #region public methods
-
-        //to be changed later in private and add it in all derived class somehow
-        public int CalculateUtilitiesPrice()
-        {
-                foreach (var item in Endowment)
-                {
-                    int val = (int)item;
-                    _totalEndowmentCost += val;
-                }
-            return _totalEndowmentCost;
-        }
-
-        public virtual int GetTotalPrice()
-        {
-            _totalCost = Surface * 1000 + _totalEndowmentCost;
-            return _totalCost;
-        }
         
         public virtual void ShowInfo()
         {
@@ -102,6 +85,22 @@ namespace RealEstateProject
         #endregion
 
         #region protected&private methods
+        //to be changed later in private and add it in all derived class somehow
+        protected int CalculateUtilitiesPrice()
+        {
+            foreach (var item in Endowment)
+            {
+                int val = (int)item;
+                _totalEndowmentCost += val;
+            }
+            return _totalEndowmentCost;
+        }
+
+        protected virtual int GetTotalPrice()
+        {
+            _totalCost = Surface * 1000 + _totalEndowmentCost;
+            return _totalCost;
+        }
 
         protected void ResetCosts()
         {

@@ -12,6 +12,7 @@ namespace RealEstateProject
         static void Main(string[] args)
         {
             #region Variables
+
             bool quit = false;
             string first_selection = string.Empty; // used to select type of residence
             string second_selection = string.Empty; // used to decide if buy or not
