@@ -45,9 +45,9 @@ namespace RealEstateProject
         protected override int GetTotalPrice()
         {
             if (Level == 2)
-                return (Surface * 1000 + _totalEndowmentCost) * 2;
+                return (Surface * costMultiplier + _totalEndowmentCost) * 2;
             else
-                return Surface * 1000 + _totalEndowmentCost;
+                return Surface * costMultiplier + _totalEndowmentCost;
         }
 
         public override void ShowInfo()

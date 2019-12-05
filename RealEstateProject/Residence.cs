@@ -10,7 +10,7 @@ namespace RealEstateProject
     public class Residence
     {
         #region Fields and Properties
-        
+        protected const int costMultiplier = 1000;
         public int _totalEndowmentCost = 0; // the utilities cost for the specific residence
         public int _totalCost = 0; //total cost of the residence
         private static int id; // id for each instance
@@ -98,7 +98,7 @@ namespace RealEstateProject
 
         protected virtual int GetTotalPrice()
         {
-            _totalCost = Surface * 1000 + _totalEndowmentCost;
+            _totalCost = Surface * costMultiplier + _totalEndowmentCost;
             return _totalCost;
         }
 
